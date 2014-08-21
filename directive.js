@@ -14,8 +14,8 @@ var LoginCtrl = function ($scope, $modalInstance, message) {
     };
 }
 
-angular.module('cswank.navbar', [])
-    .directive("navbar", ['$rootScope', 'auth', '$localStorage', '$modal', '$dockets', function($rootScope, auth, $localStorage, $modal, $dockets) {
+angular.module('cswank.auth-navbar', [])
+    .directive("auth-navbar", ['$rootScope', 'auth', '$localStorage', '$modal', '$dockets', function($rootScope, auth, $localStorage, $modal, $dockets) {
         return {
             restrict: "E",
             replace: true,
