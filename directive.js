@@ -12,7 +12,7 @@ var LoginCtrl = function ($scope, $modalInstance, message) {
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-}
+};
 
 angular.module('cswank.auth-navbar', [])
     .factory('$auth', ['$http', function($http) {

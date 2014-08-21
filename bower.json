@@ -6,7 +6,7 @@
         "**/.*",
         "node_modules",
         "components"
-    ]
+    ],
     "dependencies": {
         "angular": "~1.0.6",
         "angular-bootstrap": "latest"
