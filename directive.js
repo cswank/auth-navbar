@@ -15,7 +15,39 @@ var LoginCtrl = function ($scope, $modalInstance, message) {
 }
 
 angular.module('cswank.auth-navbar', [])
-    .directive("auth-navbar", ['$rootScope', 'auth', '$localStorage', '$modal', '$dockets', function($rootScope, auth, $localStorage, $modal, $dockets) {
+    .factory('$auth', ['$http', function($http) {
+        return {
+            login: function(username, password, callback, errorCallback) {
+                $http({
+                    url: '/api/login',
+                    method: "POST",
+                    data: JSON.stringify({username:username, password: password}),
+                    headers: {'Content-Type': 'application/json'}
+                }).success(function (data, status, headers, config) {
+                    callback();
+                }).error(function (data, status, headers, config) {
+                    errorCallback();
+                });
+            },
+            logout: function(callback) {
+                $http({
+                    url: '/api/logout',
+                    method: "POST",
+                    headers: {'Content-Type': 'application/json'}
+                }).success(function (data, status, headers, config) {
+                    callback();
+                }).error(function (data, status, headers, config) {
+                    
+                });
+            },
+            ping: function(callback) {
+                $http.get("/api/ping").success(function(data) {
+                    callback(data);
+                });
+            }
+        }
+    }])
+    .directive("auth-navbar", ['$rootScope', '$auth', '$localStorage', '$modal', function($rootScope, $auth, $localStorage, $modal) {
         return {
             restrict: "E",
             replace: true,
@@ -41,7 +73,7 @@ angular.module('cswank.auth-navbar', [])
                         $scope.username = user.name;
                         $scope.$storage.username = user.name;
                         $scope.password = user.password;
-                        auth.login($scope.username, $scope.password, function(){
+                        $auth.login($scope.username, $scope.password, function(){
                             $scope.loggedIn = true;
                             $rootScope.loggedIn = true;
                         }, function(){
@@ -51,12 +83,12 @@ angular.module('cswank.auth-navbar', [])
                 }
                 
                 $scope.logout = function() {
-                    auth.logout(function() {
+                    $auth.logout(function() {
                         $scope.loggedIn = false;
                     });
                 }
                 function ping() {
-                    $dockets.ping(function(data) {
+                    $auth.ping(function(data) {
                         $scope.loggedIn = true;
                         $rootScope.loggedIn = true;
                     }, function() {
