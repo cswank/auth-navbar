@@ -14,7 +14,7 @@ var LoginCtrl = function ($scope, $modalInstance, message) {
     };
 };
 
-angular.module('cswank.auth-navbar', [])
+angular.module('authNavbar', [])
     .factory('$auth', ['$http', function($http) {
         return {
             login: function(username, password, callback, errorCallback) {
