@@ -47,7 +47,7 @@ angular.module('cswank.auth-navbar', [])
             }
         }
     }])
-    .directive("auth-navbar", ['$rootScope', '$auth', '$localStorage', '$modal', function($rootScope, $auth, $localStorage, $modal) {
+    .directive("authNavbar", ['$rootScope', '$auth', '$localStorage', '$modal', function($rootScope, $auth, $localStorage, $modal) {
         return {
             restrict: "E",
             replace: true,
