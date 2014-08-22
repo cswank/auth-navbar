@@ -1,6 +1,6 @@
 {
     "name": "authNavbar",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "main": "directive.js",
     "ignore": [
         "**/.*",
@@ -9,6 +9,7 @@
     ],
     "dependencies": {
         "angular": "^1.2.16",
-        "bootstrap": "^3.1.1"
+        "bootstrap": "^3.1.1",
+        "ngstorage": "latest"
     }
 }
