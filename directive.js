@@ -102,5 +102,4 @@ angular.module('authNavbar', [])
                 ping();
             }
         }
-    }])
-  });
+    }]);
